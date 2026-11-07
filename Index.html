@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier confidentiel</title>
+
+<style>
+* { box-sizing:border-box; }
+
+body {
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#101923;
+ color:#e9eef5;
+ min-height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ padding:18px;
+}
+
+.container {
+ width:100%;
+ max-width:650px;
+}
+
+.panel {
+ background:#192735;
+ border:1px solid #314354;
+ border-radius:12px;
+ padding:28px;
+ box-shadow:0 15px 50px #0005;
+}
+
+.logo {
+ text-align:center;
+ font-size:30px;
+ margin-bottom:12px;
+}
+
+h2 {
+ text-align:center;
+ font-size:21px;
+ font-weight:500;
+ margin-bottom:8px;
+}
+
+.subtitle {
+ text-align:center;
+ color:#9babbc;
+ font-size:13px;
+ margin-bottom:28px;
+}
+
+input, textarea {
+ width:100%;
+ background:#101923;
+ color:white;
+ border:1px solid #43566a;
+ padding:14px;
+ border-radius:7px;
+ font-size:16px;
+ outline:none;
+ margin:10px 0;
+}
+
+button {
+ width:100%;
+ border:0;
+ border-radius:7px;
+ padding:14px;
+ background:#315b7c;
+ color:white;
+ font-size:15px;
+ cursor:pointer;
+ margin-top:12px;
+}
+
+button:hover { background:#416f93; }
+
+.error {
+ color:#ef9999;
+ font-size:13px;
+ margin-top:12px;
+ text-align:center;
+}
+
+.hidden { display:none; }
+
+.header {
+ display:flex;
+ justify-content:space-between;
+ border-bottom:1px solid #394a5a;
+ padding-bottom:17px;
+ margin-bottom:20px;
+ gap:10px;
+}
+
+.status {
+ color:#8dc5a4;
+ font-size:12px;
+}
+
+.dossier {
+ background:#223546;
+ border-radius:8px;
+ padding:15px;
+ margin-bottom:20px;
+}
+
+.dossier small {
+ color:#9babbc;
+}
+
+.message {
+ background:#24394b;
+ border-left:3px solid #6d99ba;
+ border-radius:5px;
+ padding:18px;
+ line-height:1.7;
+ font-size:14px;
+ white-space:pre-line;
+}
+
+.sender {
+ color:#9dbbd3;
+ font-weight:bold;
+ margin-bottom:12px;
+}
+
+.reply {
+ background:#1d3040;
+ border-radius:8px;
+ padding:15px;
+ margin-top:15px;
+}
+
+.bubble {
+ background:#315b7c;
+ border-radius:12px 12px 2px 12px;
+ padding:13px;
+ margin:12px 0 12px auto;
+ max-width:90%;
+ font-size:14px;
+ line-height:1.6;
+ white-space:pre-wrap;
+}
+
+.notice {
+ font-size:11px;
+ color:#a6b4c1;
+ text-align:center;
+ margin-top:20px;
+ line-height:1.5;
+}
+
+textarea {
+ min-height:110px;
+ resize:vertical;
+}
+
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- CONNEXION PRINCIPALE -->
+<div class="panel" id="login">
+
+ <div class="logo">🔐</div>
+ <h2>ESPACE CONFIDENTIEL</h2>
+ <div class="subtitle">
+  Accès au dossier personnel
+ </div>
+
+ <input
+  type="password"
+  id="code1"
+  placeholder="Code d'accès"
+  inputmode="numeric"
+ >
+
+ <button onclick="login()">
+  ACCÉDER AU DOSSIER
+ </button>
+
+ <div class="error" id="error1"></div>
+
+ <div class="notice">
+  Maquette fictive de messagerie privée.
+  Aucun organisme officiel n'est associé à cet espace.
+ </div>
+
+</div>
+
+<!-- DOSSIER -->
+<div class="panel hidden" id="dossier">
+
+ <div class="header">
+  <div>
+   <strong>MESSAGERIE PRIVÉE</strong><br>
+   <small>ESPACE PERSONNEL</small>
+  </div>
+  <div class="status">● SESSION OUVERTE</div>
+ </div>
+
+ <div class="dossier">
+  <small>DOSSIER N° 001</small>
+  <h3>Situation familiale</h3>
+  <small>Destinataire : Maël</small>
+ </div>
+
+ <div class="message">
+  <div class="sender">
+   PERSONNAGE FICTIF — CAPITAINE
+  </div>
+
+  Cher Maël,
+
+  Ayant pris en compte les informations m'ayant été transmises, je ne peux que conseiller à votre maman de se renseigner sur les possibilités d'accompagnement, les aides et les associations existantes.
+
+  Concernant vos interrogations relatives à un éventuel départ du domicile familial et à ses conséquences, la situation mérite une analyse approfondie au regard des circonstances précises et des éléments disponibles.
+
+  Je tiens également à vous préciser que les questions relatives à votre avenir professionnel, notamment les concours de la fonction publique et les éventuelles habilitations, doivent être examinées individuellement. Aucune conclusion automatique ne peut être tirée des seules informations évoquées.
+cependant vous etes dans une situation qui vous sera tres compliquée d'acceder à certain concours ... 
+  Je reste disponible pour prendre connaissance de votre réponse.
+
+  A galon 
+
+  Capitaine 
+ </div>
+
+ <div class="reply">
+
+  <strong>RÉPONDRE AU MESSAGE</strong>
+
+  <p style="font-size:12px;color:#a6b4c1">
+   Une seconde vérification est nécessaire.
+  </p>
+
+  <input
+   type="password"
+   id="code2"
+   placeholder="Second code secret"
+   inputmode="numeric"
+  >
+
+  <button onclick="unlockReply()">
+   AUTORISER LA RÉPONSE
+  </button>
+
+  <div class="error" id="error2"></div>
+
+ </div>
+
+ <div class="reply hidden" id="replyArea">
+
+  <strong>RÉDIGER UNE RÉPONSE</strong>
+
+  <textarea
+   id="replyText"
+   placeholder="Écrivez votre réponse ici..."
+  ></textarea>
+
+  <button onclick="sendMessage()">
+   ENVOYER LA RÉPONSE
+  </button>
+
+  <div id="conversation"></div>
+
+ </div>
+
+ <div class="notice">
+  
+  Les messages ne sont pas transmis à un tiers.
+ </div>
+
+</div>
+</div>
+
+<script>
+
+function login() {
+ const code = document.getElementById("code1").value;
+
+ if(code === "09032011") {
+  document.getElementById("login").classList.add("hidden");
+  document.getElementById("dossier").classList.remove("hidden");
+ } else {
+  document.getElementById("error1").textContent =
+   "Code incorrect. Veuillez réessayer.";
+ }
+}
+
+function unlockReply() {
+ const code = document.getElementById("code2").value;
+
+ if(code === "29430") {
+  document.getElementById("replyArea").classList.remove("hidden");
+  document.getElementById("error2").textContent = "";
+ } else {
+  document.getElementById("error2").textContent =
+   "Second code incorrect.";
+ }
+}
+
+function sendMessage() {
+ const field = document.getElementById("replyText");
+ const message = field.value.trim();
+
+ if(!message) return;
+
+ const bubble = document.createElement("div");
+ bubble.className = "bubble";
+ bubble.textContent = message;
+
+ document.getElementById("conversation").appendChild(bubble);
+
+ field.value = "";
+}
+
+</script>
+
+</body>
+</html>
